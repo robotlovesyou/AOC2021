@@ -1,6 +1,3 @@
-import java.io.BufferedReader
-import java.io.InputStream
-
 object Reader {
 
     private fun lines(filename: String): Sequence<String> =
