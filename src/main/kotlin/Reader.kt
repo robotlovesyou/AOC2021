@@ -9,4 +9,6 @@ object Reader {
         it.map { it.toInt() }.toList()
     }
 
+    fun strings(filename: String): List<String> = buffered(filename).readLines()
+
 }
