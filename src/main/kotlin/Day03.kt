@@ -9,7 +9,6 @@ fun main() {
 
     val o2Reading = o2(readings, 11)
     val co2Reading = co2(readings, 11)
-
     println("part 2 = ${o2Reading * co2Reading}")
 }
 
