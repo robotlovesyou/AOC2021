@@ -1,4 +1,4 @@
-val masks = listOf<UInt>(1u, 2u, 4u, 8u, 16u, 32u, 64u, 128u, 256u, 512u, 1024u, 2048u)
+val masks = listOf(1u, 2u, 4u, 8u, 16u, 32u, 64u, 128u, 256u, 512u, 1024u, 2048u)
 
 fun main() {
     val readings = Reader.ints("input03.txt", 2).map { it.toUInt() }
@@ -24,7 +24,7 @@ fun counts(l: List<UInt>): List<UInt> =
         }
     }
 
-fun counts(l: List<UInt>, i: Int): UInt = l.fold(0u) { count, reading ->
+fun count(l: List<UInt>, i: Int): UInt = l.fold(0u) { count, reading ->
     if (masks[i].and(reading) > 0u) {
         count + 1u
     } else {
@@ -33,7 +33,7 @@ fun counts(l: List<UInt>, i: Int): UInt = l.fold(0u) { count, reading ->
 }
 
 fun gamma(size: UInt, l: List<UInt>): UInt = l.foldIndexed(0u) { i, acc, count ->
-    if (count >= size / 2u) {
+    if (count >= size - count) {
         acc + (1u).shl(i)
     } else {
         acc
@@ -41,8 +41,8 @@ fun gamma(size: UInt, l: List<UInt>): UInt = l.foldIndexed(0u) { i, acc, count -
 }
 
 fun filter(l: List<UInt>, i: Int, tf: (c: UInt, s: UInt, i: Int) -> (UInt) -> Boolean): UInt {
-    val count = counts(l, i)
-    val t = tf(count, l.size.toUInt(), i)
+    val c = count(l, i)
+    val t = tf(c, l.size.toUInt(), i)
     val filtered = l.filter(t)
     return if (filtered.size == 1) {
         filtered.first()
