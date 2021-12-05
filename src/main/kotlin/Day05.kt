@@ -47,10 +47,6 @@ data class Point(val x: Int, val y: Int) {
         }
     }
 
-    fun left(other: Point) = if (this.x <= other.x) {this} else {other}
-    fun right(other: Point) = if (this.x > other.x) {this} else {other}
-    fun top(other: Point) = if (this.y <= other.y) {this} else {other}
-    fun bottom(other: Point) = if (this.y > other.y) {this} else {other}
     fun unitVectorTo(other: Point): Pair<Int, Int> {
         val dx = other.x - this.x
         val dy = other.y - this.y
@@ -64,31 +60,27 @@ data class Line(val start: Point, val end: Point) {
     companion object {
         fun from(strLine: String): Line = strLine.let {
             val (start, end) = strLine.split(" -> ")
-            val a = Point.from(start)
-            val b = Point.from(end)
             Line(Point.from(start), Point.from(end))
         }
     }
 
-    fun horizontal(): Boolean = start.y == end.y
-    fun vertical(): Boolean = start.x == end.x
+    private fun horizontal(): Boolean = start.y == end.y
+    private fun vertical(): Boolean = start.x == end.x
     fun hOrV(): Boolean = horizontal() || vertical()
 }
 
-class Field(val topLeft: Point, val bottomRight: Point) {
-    val width = bottomRight.x - (topLeft.x - 1)
-    val height = bottomRight.y - (topLeft.y - 1)
+class Field(private val topLeft: Point, bottomRight: Point) {
+    private val width = bottomRight.x - (topLeft.x - 1)
+    private val height = bottomRight.y - (topLeft.y - 1)
     val points: MutableList<Int> = MutableList(width * height) { 0 }
 
-    fun indexFor(p: Point): Int = (p.y - topLeft.y) * width + (p.x - topLeft.x)
+    private fun indexFor(p: Point): Int = (p.y - topLeft.y) * width + (p.x - topLeft.x)
 
-    fun incrPoint(p: Point): Unit {
+    private fun incrPoint(p: Point) {
         points[indexFor(p)] += 1
     }
 
-    fun at(p: Point): Int = points[indexFor(p)]
-
-    fun applyLine(l: Line): Unit {
+    fun applyLine(l: Line) {
         val (ix, iy) = l.start.unitVectorTo(l.end)
         var p = l.start
         while (true) {
