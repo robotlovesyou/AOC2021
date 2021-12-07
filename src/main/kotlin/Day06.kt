@@ -1,12 +1,10 @@
 fun main() {
-    val result = run(model(read()), 80)
+    val result = run(model(Reader.csInts("input06.txt")), 80)
     println("part 1 = ${result.values.sum()}")
 
-    val result2 = run(model(read()), 256)
+    val result2 = run(model(Reader.csInts("input06.txt")), 256)
     println("part 2 = ${result2.values.sum()}")
 }
-
-fun read(): List<Int> = Reader.strings("input06.txt").first().split(",").map { it.toInt() }
 
 fun model(readings: List<Int>): MutableMap<Int, Long> = readings.fold(mutableMapOf()) { map, reading ->
     map[reading] = map.getOrDefault(reading, 0) + 1

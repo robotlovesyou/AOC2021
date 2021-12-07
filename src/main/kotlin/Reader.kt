@@ -14,4 +14,6 @@ object Reader {
     fun strings(filename: String): List<String> = buffered(filename).readLines()
     fun stringSeq(filename: String): Sequence<String> = buffered(filename).lineSequence()
 
+    fun csInts(filename: String): List<Int> = Reader.strings(filename).first().split(",").map { it.toInt() }
+
 }
