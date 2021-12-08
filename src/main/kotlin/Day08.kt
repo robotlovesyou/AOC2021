@@ -35,13 +35,13 @@ data class Input(val signals: List<String>, val dislay: List<String>) {
         val seven = decodeDigit(7U) { it.length == 3 }
         val four = decodeDigit(4U) { it.length == 4 }
         val eight = decodeDigit(8U) { it.length == 7 }
-        val three = decodeDigit(3U) { it.length == 5 && it.toSet().intersect(one.asSet()).size == 2 }
+        val three = decodeDigit(3U) { it.length == 5 && it.toSet().intersect(one.toSet()).size == 2 }
         val two = decodeDigit(2U) {
-            it.length == 5 && it.toSet().subtract(four.asSet()).subtract(three.asSet()).size == 1
+            it.length == 5 && it.toSet().subtract(four.toSet()).subtract(three.toSet()).size == 1
         }
         val five = decodeDigit(5U) { it.length == 5 }
-        val six = decodeDigit(6U) { it.toSet().intersect(one.asSet()).size == 1 }
-        val nine = decodeDigit(9U) { it.toSet().subtract(four.asSet()).size == 2 }
+        val six = decodeDigit(6U) { it.toSet().intersect(one.toSet()).size == 1 }
+        val nine = decodeDigit(9U) { it.toSet().subtract(four.toSet()).size == 2 }
         val zero = decodeDigit(0U) {true}
         val repMap: Map<String, Digit> =
             listOf(one, two, three, four, five, six, seven, eight, nine, zero).fold(mutableMapOf()) { m, d ->
@@ -53,7 +53,7 @@ data class Input(val signals: List<String>, val dislay: List<String>) {
 }
 
 data class Digit(val n: UShort, val repr: String) {
-    fun asSet(): Set<Char> = repr.toSet()
+    fun toSet(): Set<Char> = repr.toSet()
 }
 
 object DisplayReader {
