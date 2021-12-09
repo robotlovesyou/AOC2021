@@ -1,3 +1,5 @@
+package day04
+
 fun main() {
     val state = BoardReader.read(Reader.stringSeq("input04.txt"))
     println("part 1 = ${playToWin(state.header, state.boards)}")

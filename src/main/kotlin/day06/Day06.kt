@@ -1,3 +1,5 @@
+package day06
+
 fun main() {
     val result = run(model(Reader.csInts("input06.txt")), 80)
     println("part 1 = ${result.values.sum()}")

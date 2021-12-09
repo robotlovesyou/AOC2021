@@ -1,3 +1,5 @@
+package day01
+
 fun main() {
     val totalDrops = Reader.ints("input01.txt").let {
         it.fold(Drops(last = it.first(), drops = 0)) { acc, current ->

@@ -1,3 +1,5 @@
+package day02
+
 fun main() {
     val result = Reader.strings("input02.txt").fold(State()) {state, command -> state.apply(command)}
     println("part 1: ${result.f * result.d}")

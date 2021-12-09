@@ -1,3 +1,5 @@
+package day03
+
 val masks = listOf(1u, 2u, 4u, 8u, 16u, 32u, 64u, 128u, 256u, 512u, 1024u, 2048u)
 
 fun main() {

@@ -1,3 +1,5 @@
+package day09
+
 fun main() {
     val cavebed = Cavebed(CavebedReader.read("input09.txt"))
     println("part 1 = ${cavebed.sumRisks()}")
@@ -28,6 +30,8 @@ class Cavebed(readings: List<List<UShort>>) {
         return sum
     }
 }
+
+data class Point(val x: Int, val y: Int)
 
 object CavebedReader {
     fun read(filename: String): List<List<UShort>> =

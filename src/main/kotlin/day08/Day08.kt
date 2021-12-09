@@ -1,3 +1,5 @@
+package day08
+
 fun main() {
     val input = DisplayReader.readInput("input08.txt")
 
